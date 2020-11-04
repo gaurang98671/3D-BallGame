@@ -2,24 +2,36 @@ extends KinematicBody
 
 var velocity= Vector3(0, 0, 0)
 var rotation_speed= -deg2rad(5)
+var in_heal=int(0)
 
-func _ready() -> void:
-	pass
-	
+var timer
+
+func _init():
+	timer = Timer.new()
+	add_child(timer)
+	timer.autostart = true
+	timer.wait_time = 0.5
+	timer.connect("timeout", self, "_giveDamage")
+
 func _physics_process(delta):
 	
 	if(Input.is_action_pressed("ui_right")):
 		velocity.x=5
+		velocity.z=0
 		$CollisionShape/MeshInstance.rotate_z(rotation_speed)
 	elif(Input.is_action_pressed("ui_left")):
 		velocity.x=-5
+		velocity.z=0
 		$CollisionShape/MeshInstance.rotate_z(-rotation_speed)
 	elif(Input.is_action_pressed("ui_up")):
 		velocity.z=-5
+		velocity.x=0
 		$CollisionShape/MeshInstance.rotate_x(rotation_speed)
 	elif(Input.is_action_pressed("ui_down")):
 		velocity.z=5
+		velocity.x=0
 		$CollisionShape/MeshInstance.rotate_x(-rotation_speed)
+		
 	elif(Input.is_action_pressed("jump")):
 		velocity.y= 1500 
 	else:
@@ -27,4 +39,17 @@ func _physics_process(delta):
 		velocity.z=0
 	velocity.y= -1000 * delta
 	move_and_slide(velocity)
-	pass
+	
+	
+func _giveDamage():
+	if(in_heal==0):
+		$Health.value-=1
+
+func _on_Area_body_entered(body):
+	in_heal=1
+	print("Body entered")
+
+
+func _on_Area_body_exited(body):
+	in_heal=0
+	
