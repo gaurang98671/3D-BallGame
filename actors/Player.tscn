@@ -34,15 +34,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 420.0
-margin_top = 572.0
-margin_right = 595.0
-margin_bottom = 594.0
-text = "Press E to interact"
-align = 1
-autowrap = true
-percent_visible = -0.0625
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Position3D" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10763, 0 )

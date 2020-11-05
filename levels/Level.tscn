@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/Player.gd" type="Script" id=2]
+[ext_resource path="res://levels/RigidBody.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 8.37603, 0.459528, 6.8982 )
@@ -77,6 +78,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67171, 2.05588 )
 shape = SubResource( 6 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
+script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
 shape = SubResource( 7 )
@@ -90,7 +92,16 @@ transform = Transform( 0.891311, 0, 0, 0, 5.2037, 0, 0, 0, 0.891311, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody/PickArea"]
 shape = SubResource( 9 )
+
+[node name="Label" type="Label" parent="RigidBody"]
+margin_left = 390.0
+margin_top = 555.0
+margin_right = 646.0
+margin_bottom = 597.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="Area" to="Player" method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="Player" method="_on_Area_body_exited"]
-[connection signal="body_entered" from="RigidBody/PickArea" to="Player" method="_on_PickArea_body_entered"]
-[connection signal="body_exited" from="RigidBody/PickArea" to="Player" method="_on_PickArea_body_exited"]
+[connection signal="body_entered" from="RigidBody/PickArea" to="RigidBody" method="_on_PickArea_body_entered"]
+[connection signal="body_exited" from="RigidBody/PickArea" to="RigidBody" method="_on_PickArea_body_exited"]

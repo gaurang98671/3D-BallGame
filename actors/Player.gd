@@ -57,12 +57,3 @@ func _on_Area_body_exited(body):
 	
 
 
-func _on_PickArea_body_entered(body):
-	pass
-	$Label.text= str("Press E to interact")
-
-
-
-
-func _on_PickArea_body_exited(body: Node) -> void:
-	$Label.text= str("")
