@@ -44,6 +44,8 @@ func _physics_process(delta):
 func _giveDamage():
 	if(in_heal==0):
 		$Health.value-=1
+	else:
+		$Health.value+=1
 
 func _on_Area_body_entered(body):
 	in_heal=1
@@ -53,3 +55,14 @@ func _on_Area_body_entered(body):
 func _on_Area_body_exited(body):
 	in_heal=0
 	
+
+
+func _on_PickArea_body_entered(body):
+	pass
+	$Label.text= str("Press E to interact")
+
+
+
+
+func _on_PickArea_body_exited(body: Node) -> void:
+	$Label.text= str("")
