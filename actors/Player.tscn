@@ -33,6 +33,3 @@ value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Position3D" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10763, 0 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/Player.gd" type="Script" id=2]
@@ -19,7 +19,25 @@ emission_on_uv2 = false
 material = SubResource( 2 )
 size = Vector3( 16.39, 0.298, 13.875 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.02
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 16, 0 )
+spread = 7.0
+flatness = 0.45
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.75
+initial_velocity_random = 0.08
+angle = 66.2
+scale = 0.5
+color = Color( 0.137255, 0.145098, 0.705882, 1 )
+
+[sub_resource type="SphereMesh" id=6]
+radius = 0.1
+height = 0.1
 
 [sub_resource type="BoxShape" id=7]
 
@@ -60,6 +78,9 @@ script = ExtResource( 2 )
 [node name="Spatial" type="Spatial" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.82102, 0.5709, 0, -0.5709, 0.82102, -2.22131, 6.25473, 7.88137 )
 
+[node name="Position3D" type="Position3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87068, 0 )
+
 [node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.838633, 0.544698, 0, -0.544698, 0.838633, 0, 8.77757, 12.5138 )
 target = NodePath("../Player/Spatial")
@@ -75,7 +96,15 @@ shadow_enabled = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67171, 2.05588 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
+
+[node name="Particles" type="Particles" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.23047, 0 )
+amount = 100
+lifetime = 0.78
+visibility_aabb = AABB( -1.0436, -2.04226, -0.973174, 2.0872, 4.08452, 1.94635 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
 script = ExtResource( 3 )
