@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/naturePack_046.obj-7c1336a7f7d5cc92127bf7d388a7517e.mesh"
+
+[deps]
+
+files=[ "res://.import/naturePack_046.obj-7c1336a7f7d5cc92127bf7d388a7517e.mesh" ]
+
+source_file="res://assets/kenney_naturepackextended_updated/Models/naturePack_046.obj"
+dest_files=[ "res://.import/naturePack_046.obj-7c1336a7f7d5cc92127bf7d388a7517e.mesh", "res://.import/naturePack_046.obj-7c1336a7f7d5cc92127bf7d388a7517e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

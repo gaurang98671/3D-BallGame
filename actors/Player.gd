@@ -14,7 +14,8 @@ func _init():
 	timer.connect("timeout", self, "_giveDamage")
 
 func _physics_process(delta):
-	
+	if($Health.value==0):
+		print("Game over")
 	if(Input.is_action_pressed("ui_right")):
 		velocity.x=5
 		velocity.z=0
@@ -37,7 +38,7 @@ func _physics_process(delta):
 		velocity.x=0
 		velocity.z=0
 		
-	if(Input.is_action_pressed("jump")):
+	if(Input.is_action_just_pressed("jump") and is_on_floor()):
 		velocity.y= 12 
 	if(not is_on_floor()):
 		velocity.y-= 30 * delta
