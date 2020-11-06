@@ -3,7 +3,7 @@ extends KinematicBody
 var velocity= Vector3(0, 0, 0)
 var rotation_speed= -deg2rad(5)
 var in_heal=int(0)
-
+var FLOOR_NORMAL= Vector3(0, 1, 0)
 var timer
 
 func _init():
@@ -32,13 +32,16 @@ func _physics_process(delta):
 		velocity.x=0
 		$CollisionShape/MeshInstance.rotate_x(-rotation_speed)
 		
-	elif(Input.is_action_pressed("jump")):
-		velocity.y= 1500 
+	
 	else:
 		velocity.x=0
 		velocity.z=0
-	velocity.y= -1000 * delta
-	move_and_slide(velocity)
+		
+	if(Input.is_action_pressed("jump")):
+		velocity.y= 12 
+	if(not is_on_floor()):
+		velocity.y-= 30 * delta
+	move_and_slide(velocity, FLOOR_NORMAL)
 	
 	
 func _giveDamage():
