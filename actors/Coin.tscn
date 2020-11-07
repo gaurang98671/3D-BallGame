@@ -2,7 +2,7 @@
 
 [ext_resource path="res://actors/Coin.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "fade"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
@@ -17,7 +17,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.863795, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "rotate"
 loop = true
 tracks/0/type = "value"
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ Vector3( 6.62647e-09, -3.78893, -89.6045 ), Vector3( 3.26761e-09, 178.248, -89.6025 ) ]
 }
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Area
 
 
@@ -56,11 +56,11 @@ func _on_Area_body_entered(body: Node) -> void:
 	get_tree().queue_fre
 "
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape" id=4]
 
-[sub_resource type="CylinderMesh" id=2]
+[sub_resource type="CylinderMesh" id=5]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.8, 0.780392, 0.447059, 1 )
 metallic = 0.17
 proximity_fade_enable = true
@@ -72,19 +72,19 @@ script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotate"
-anims/fade = SubResource( 6 )
-anims/rotate = SubResource( 4 )
+anims/fade = SubResource( 1 )
+anims/rotate = SubResource( 2 )
 
 [node name="Area" type="Area" parent="."]
 transform = Transform( 0.877647, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-script = SubResource( 5 )
+script = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( -0.00693382, -0.437773, 0.0313732, -0.999874, 0.00303866, -5.85385e-11, -0.000212031, -0.0133868, -1.02596, 0, 0, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Area/CollisionShape"]
 transform = Transform( 1, -3.86081e-10, 1.45519e-11, -6.8485e-10, 1, 7.45058e-09, 0, -9.31323e-10, 1, 0, 0, 0 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
