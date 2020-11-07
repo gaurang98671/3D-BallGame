@@ -50,10 +50,12 @@ func _physics_process(delta):
 		movement_speed=15
 		get_node("Particles").emitting= true
 		get_node("Particles").process_material.gravity= Vector3(-velocity.x, 0, -velocity.z)
+		rotation_speed= -deg2rad(10)
 		
 	else:
 		movement_speed=5
 		get_node("Particles").emitting= false
+		rotation_speed= -deg2rad(5)
 		
 	if(not is_on_floor()):
 		velocity.y-= 30 * delta
